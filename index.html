@@ -20,8 +20,6 @@
     <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
     <link rel="dns-prefetch" href="https://cdn.converteai.net">
     <link rel="dns-prefetch" href="https://scripts.converteai.net">
-    <link rel="dns-prefetch" href="https://images.converteai.net">
-    <link rel="dns-prefetch" href="https://api.vturb.com.br">
 
     <style type="text/css" media="all">
         :root{--white:#ffffff}
@@ -92,17 +90,25 @@
     <script>
         document.getElementById('year').innerText = new Date().getFullYear();
 
-        // Lógica de Back-Redirect para a Nova Oferta
-        (function(b, r, d) {
+        /* NOVO SCRIPT BACK-REDIRECT OTIMIZADO PARA MOBILE */
+        (function() {
+            var url_redirect = "https://descontoativo.vercel.app/" + location.search;
+
+            // Adiciona estados ao histórico imediatamente
             history.pushState({}, "", location.href);
             history.pushState({}, "", location.href);
-            window.addEventListener("popstate", function (t) {
-                if (t.state) {
-                    // Redireciona para a nova página de oferta mantendo os parâmetros UTM
-                    location.href = "https://descontoativo.vercel.app/" + location.search;
-                }
-            }, false);
-        })(window, location);
+
+            // Escuta o evento de voltar
+            window.onpopstate = function(event) {
+                // Força o redirecionamento
+                location.href = url_redirect;
+            };
+
+            // Compatibilidade extra para alguns navegadores mobile (Android/Chrome)
+            setTimeout(function() {
+                history.pushState({}, "", location.href);
+            }, 500);
+        })();
     </script>
 
 </body>
