@@ -11,7 +11,7 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="lotopremida-nove.vercel.app">
+    <meta property="og:url" content="https://sitefyagency.com.br/descubra/">
     <meta property="og:image" content="https://media.atomicatpages.net/Images/ogimage.png">
 
     <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
@@ -70,10 +70,10 @@
                     var s=document.createElement("script"); 
                     s.src="https://scripts.converteai.net/5c6fb25e-7714-4ef2-ba81-e6d4c4d57d92/players/69a5102e39c8b3b8846bb215/v4/player.js", s.async=!0,document.head.appendChild(s); 
                 </script>
-                </div>
+            </div>
 
             <div class="cta-container atomicat-delay">
-                <a href="https://pay.lowify.com.br/checkout.php?product_id=mQBaNX" class="a-btn">
+                <a href="https://quizzloto.vercel.app/" class="a-btn">
                     CLIQUE AQUI PARA CONTINUAR
                 </a>
             </div>
@@ -92,15 +92,17 @@
     <script>
         document.getElementById('year').innerText = new Date().getFullYear();
 
-        history.pushState({}, "", location.href);
-        history.pushState({}, "", location.href);
-        window.addEventListener("popstate", function (t) {
-            if (!t.state) return;
-            setTimeout(function () {
-                var back_redirect = "https://pay.lowify.com.br/checkout.php?product_id=mQBaNX" + location.search;
-                location.href = back_redirect;
-            }, 1);
-        }, false);
+        // Lógica de Back-Redirect para a Nova Oferta
+        (function(b, r, d) {
+            history.pushState({}, "", location.href);
+            history.pushState({}, "", location.href);
+            window.addEventListener("popstate", function (t) {
+                if (t.state) {
+                    // Redireciona para a nova página de oferta mantendo os parâmetros UTM
+                    location.href = "https://descontoativo.vercel.app/" + location.search;
+                }
+            }, false);
+        })(window, location);
     </script>
 
 </body>
