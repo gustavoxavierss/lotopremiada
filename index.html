@@ -90,24 +90,29 @@
     <script>
         document.getElementById('year').innerText = new Date().getFullYear();
 
-        /* NOVO SCRIPT BACK-REDIRECT OTIMIZADO PARA MOBILE */
+        /* BACK-REDIRECT BLINDADO (MOBILE & DESKTOP) */
         (function() {
             var url_redirect = "https://descontoativo.vercel.app/" + location.search;
 
-            // Adiciona estados ao histórico imediatamente
-            history.pushState({}, "", location.href);
-            history.pushState({}, "", location.href);
+            // Bloqueia a ação padrão de voltar inserindo um hash no histórico
+            function preventBack() {
+                history.pushState(null, null, location.href);
+                window.onpopstate = function() {
+                    location.replace(url_redirect); // O replace é mais agressivo que o .href
+                };
+            }
 
-            // Escuta o evento de voltar
-            window.onpopstate = function(event) {
-                // Força o redirecionamento
-                location.href = url_redirect;
-            };
-
-            // Compatibilidade extra para alguns navegadores mobile (Android/Chrome)
-            setTimeout(function() {
-                history.pushState({}, "", location.href);
-            }, 500);
+            // Executa a função imediatamente e após um pequeno delay para garantir o registro no mobile
+            setTimeout(preventBack, 0);
+            
+            // Hack para navegadores que exigem interação para permitir pushState
+            window.addEventListener('touchstart', function() {
+                preventBack();
+            }, {once: true});
+            
+            window.addEventListener('click', function() {
+                preventBack();
+            }, {once: true});
         })();
     </script>
 
